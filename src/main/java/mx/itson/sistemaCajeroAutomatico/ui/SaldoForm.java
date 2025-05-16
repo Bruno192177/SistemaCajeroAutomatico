@@ -4,6 +4,8 @@
  */
 package mx.itson.sistemaCajeroAutomatico.ui;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author bruns
@@ -13,10 +15,16 @@ public class SaldoForm extends javax.swing.JDialog {
     /**
      * Creates new form SaldoForm
      */
-    public SaldoForm(java.awt.Frame parent, boolean modal) {
+    public SaldoForm(java.awt.Dialog parent, boolean modal, double saldo) {
         super(parent, modal);
         initComponents();
+        lblSaldo.setText("$" +  String.format("%.2f", saldo)); 
     }
+
+    private SaldoForm(JFrame jFrame, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,31 +36,24 @@ public class SaldoForm extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblSaldo = new javax.swing.JTable();
-        btnAceptar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        lblSaldo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("SALDO ACTUAL");
 
-        tblSaldo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Saldo"
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.setToolTipText("");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tblSaldo);
+        });
 
-        btnAceptar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnAceptar.setText("ACEPTAR");
-        btnAceptar.setToolTipText("");
+        lblSaldo.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,30 +62,34 @@ public class SaldoForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
+                        .addGap(136, 136, 136)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnAceptar))
+                        .addGap(111, 111, 111)
+                        .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                        .addGap(168, 168, 168)
+                        .addComponent(btnSalir)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(btnAceptar)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(lblSaldo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(btnSalir)
+                .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+         dispose(); 
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,9 +134,8 @@ public class SaldoForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblSaldo;
+    private javax.swing.JLabel lblSaldo;
     // End of variables declaration//GEN-END:variables
 }

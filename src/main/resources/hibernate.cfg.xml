@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
             com.mysql.cj.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3308/CajeroAutomatico?useSSL=false
+            jdbc:mysql://localhost:3308/consultarsaldo?useSSL=false
         </property>
         <property name="hibernate.connection.username">
             root

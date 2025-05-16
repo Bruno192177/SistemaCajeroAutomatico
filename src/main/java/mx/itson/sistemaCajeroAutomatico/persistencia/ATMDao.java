@@ -47,4 +47,23 @@ public class ATMDao {
         }
         return resultado;
     }
+     
+    public static ATM autenticarCliente(String numeroTarjeta, String nip) {
+    ATM cliente = null;
+    try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        cliente = (ATM) session.createQuery("FROM ATM WHERE numeroTarjeta = :tarjeta AND nip = :nip")
+                .setParameter("tarjeta", numeroTarjeta)
+                .setParameter("nip", nip)
+                .uniqueResult();
+
+        session.getTransaction().commit();
+        session.close();
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error en la autenticación: " + ex.getMessage());
+    }
+    return cliente;
+}
 }

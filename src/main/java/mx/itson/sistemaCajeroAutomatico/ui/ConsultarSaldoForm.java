@@ -4,16 +4,20 @@
  */
 package mx.itson.sistemaCajeroAutomatico.ui;
 
+import javax.swing.JOptionPane;
+import mx.itson.sistemaCajeroAutomatico.entidades.ATM;
+import mx.itson.sistemaCajeroAutomatico.persistencia.ATMDao;
+
 /**
  *
  * @author bruns
  */
-public class LoginForm extends javax.swing.JDialog {
+public class ConsultarSaldoForm extends javax.swing.JDialog {
 
     /**
      * Creates new form LoginForm
      */
-    public LoginForm(java.awt.Frame parent, boolean modal) {
+    public ConsultarSaldoForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -32,7 +36,8 @@ public class LoginForm extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTarjeta = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         txtNip = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -48,13 +53,16 @@ public class LoginForm extends javax.swing.JDialog {
 
         txtTarjeta.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jButton1.setText("ACEPTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel4.setText("CONSULTAR SALDO");
 
         txtNip.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 
@@ -63,33 +71,40 @@ public class LoginForm extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(104, 104, 104))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(79, 79, 79))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                         .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
+                        .addGap(56, 56, 56))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(101, 101, 101)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -97,17 +112,46 @@ public class LoginForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addComponent(jButton1)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(64, 64, 64)
+                .addComponent(btnAceptar)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String numeroTarjeta = txtTarjeta.getText();
+        String nip = txtNip.getText();
+        
+        // Validar que no esten vacios
+        if (numeroTarjeta.isEmpty() || nip.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese su número de tarjeta y NIP.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;   
+        }
+        
+        // Validar que el numero de tarjeta tenga solo numeros y una longitud esperada 
+        if (!numeroTarjeta.matches("\\d{10}")) {
+            JOptionPane.showMessageDialog(this, "El número de tarjeta debe tener 10 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }   
+
+        // Validar que el NIP tenga 4 digitos numericos
+        if (!nip.matches("\\d{4}")) {
+            JOptionPane.showMessageDialog(this, "El NIP debe tener 4 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        ATM cliente = ATMDao.autenticarCliente(numeroTarjeta, nip);
+
+        if (cliente != null) {
+            SaldoForm saldoForm = new SaldoForm(this, true, cliente.getSaldoActual());
+            saldoForm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Número de tarjeta o NIP incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+           
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,20 +170,21 @@ public class LoginForm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSaldoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSaldoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSaldoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSaldoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginForm dialog = new LoginForm(new javax.swing.JFrame(), true);
+                ConsultarSaldoForm dialog = new ConsultarSaldoForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -152,11 +197,12 @@ public class LoginForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtNip;
     private javax.swing.JTextField txtTarjeta;
     // End of variables declaration//GEN-END:variables
